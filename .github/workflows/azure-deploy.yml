@@ -15,16 +15,16 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up CodeQL
-      uses: github/codeql-action/setup@v2  # Set up CodeQL Action
+      uses: github/codeql-action/setup@v3  # Set up CodeQL Action
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/autobuild@v2  # Automatically detect and build your project
+      uses: github/codeql-action/autobuild@v3  # Automatically detect and build your project
 
     - name: Run CodeQL analysis
-      uses: github/codeql-action/analyze@v2  # Run the actual static analysis
+      uses: github/codeql-action/analyze@v3  # Run the actual static analysis
 
     - name: Upload CodeQL results
-      uses: github/codeql-action/upload-results@v2  # Upload the results of the analysis for review
+      uses: github/codeql-action/upload-results@v23  # Upload the results of the analysis for review
 
 
     # Set up Node.js

@@ -38,6 +38,9 @@ jobs:
 
   Deploy:   
     # Deploy to Azure App Service
+      runs-on: ubuntu-latest
+      needs: build # Ensure 'install_and_test' job completes before running this job
+    steps:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:

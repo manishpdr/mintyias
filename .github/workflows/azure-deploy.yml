@@ -27,7 +27,12 @@ jobs:
     # Build the React app
     - name: Build the React app
       run: npm run build
+  
+  test:
+    - name: Run tests
+      run: npm test -- --ci --reporters=jest-stare --coverage
 
+  Deploy:   
     # Deploy to Azure App Service
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2

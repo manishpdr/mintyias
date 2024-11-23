@@ -24,7 +24,7 @@ jobs:
       uses: github/codeql-action/analyze@v3  # Run the actual static analysis
 
     - name: Upload CodeQL results
-      uses: github/codeql-action/upload-results@v23  # Upload the results of the analysis for review
+      uses: github/codeql-action/upload-results@v3  # Upload the results of the analysis for review
 
 
     # Set up Node.js

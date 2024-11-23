@@ -34,8 +34,7 @@ jobs:
 
     steps:
     - name: Run tests
-      run: npm test -- --ci --reporters=jest-stare --coverage
-
+      run: npm test 
   Deploy:   
     # Deploy to Azure App Service
     runs-on: ubuntu-latest

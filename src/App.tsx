@@ -3,6 +3,7 @@ import { PublicClientApplication, AccountInfo, AuthenticationResult } from '@azu
 import { MsalProvider, useMsal } from '@azure/msal-react';
 import msalConfig from './msalConfig';
 import { jwtDecode } from 'jwt-decode';
+import Home from './home';
 
 // Define the types for the decoded JWT token
 interface DecodedToken {
@@ -71,9 +72,9 @@ const App: React.FC = () => {
           <p>Welcome, {user.name}</p>
           <p>Groups: {groups.length > 0 ? groups.join(', ') : 'No groups found'}</p>
           {isAuthorized ? (
-           <App></App>
+            <p>You are authorized to access this section.</p>
           ) : (
-            <p>You are not authorized to access this section.</p>
+            <Home/>
           )}
         </div>
       ) : (
@@ -83,7 +84,11 @@ const App: React.FC = () => {
   );
 };
 
+// Wrap the app with MsalProvider
+const Main: React.FC = () => (
+  <MsalProvider instance={msalInstance}>
+   { <App />}
+  </MsalProvider>
+);
 
-
-
-export default App;
+export default Main;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { PublicClientApplication, AccountInfo, AuthenticationResult } from '@azure/msal-browser';
 import { MsalProvider, useMsal } from '@azure/msal-react';
 import msalConfig from './msalConfig';
@@ -21,6 +21,15 @@ const App: React.FC = () => {
   const [groups, setGroups] = useState<string[]>([]);
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
 
+
+  const getUserGroups = useCallback((account: AccountInfo) => {
+    const idToken = account.idToken!!;
+    const decodedToken: DecodedToken = jwtDecode(idToken);  // Decode the ID token to extract claims
+
+    const userGroups = decodedToken.groups || [];  // Extract the group IDs
+    setGroups(userGroups);
+    checkGroupAuthorization(userGroups);  // Check if the user belongs to the target group
+  },[]);
   // Check if the user is part of the target group
   useEffect(() => {
     if (accounts.length > 0) {
@@ -28,7 +37,7 @@ const App: React.FC = () => {
       setUser(account);
       getUserGroups(account);  // Get user's groups after authentication
     }
-  }, [accounts]);
+  }, [accounts,getUserGroups]);
 
   // Sign-in function
   const signIn = async () => {
@@ -42,14 +51,7 @@ const App: React.FC = () => {
   };
 
   // Get user's groups from the decoded ID token
-  const getUserGroups = (account: AccountInfo) => {
-    const idToken = account.idToken!!;
-    const decodedToken: DecodedToken = jwtDecode(idToken);  // Decode the ID token to extract claims
-
-    const userGroups = decodedToken.groups || [];  // Extract the group IDs
-    setGroups(userGroups);
-    checkGroupAuthorization(userGroups);  // Check if the user belongs to the target group
-  };
+  
 
   // Check if the user is a member of the target group
   const checkGroupAuthorization = (userGroups: string[]) => {

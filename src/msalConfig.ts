@@ -1,4 +1,4 @@
-import { Configuration } from '@azure/msal-browser';
+
 
 const msalConfig = {
   auth: {

@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const { accounts, instance } = useMsal();
   const [user, setUser] = useState<AccountInfo | null>(null);
   const [groups, setGroups] = useState<string[]>([]);
+  
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
 
 
@@ -70,7 +71,7 @@ const App: React.FC = () => {
           <p>Welcome, {user.name}</p>
           <p>Groups: {groups.length > 0 ? groups.join(', ') : 'No groups found'}</p>
           {isAuthorized ? (
-            <p>You are authorized to access this section.</p>
+           <App></App>
           ) : (
             <p>You are not authorized to access this section.</p>
           )}
@@ -85,7 +86,7 @@ const App: React.FC = () => {
 // Wrap the app with MsalProvider
 const Main: React.FC = () => (
   <MsalProvider instance={msalInstance}>
-    <App />
+   {<App />}
   </MsalProvider>
 );
 

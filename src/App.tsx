@@ -71,7 +71,7 @@ const App: React.FC = () => {
         <div>
           <p>Welcome, {user.name}</p>
           <p>Groups: {groups.length > 0 ? groups.join(', ') : 'No groups found'}</p>
-          {isAuthorized ? (
+          {!isAuthorized ? (
             <p>You are authorized to access this section.</p>
           ) : (
             <Home/>

@@ -83,11 +83,7 @@ const App: React.FC = () => {
   );
 };
 
-// Wrap the app with MsalProvider
-const Main: React.FC = () => (
-  <MsalProvider instance={msalInstance}>
-   {<App />}
-  </MsalProvider>
-);
 
-export default Main;
+
+
+export default App;

@@ -3,7 +3,9 @@ import { PublicClientApplication, AccountInfo, AuthenticationResult } from '@azu
 import { MsalProvider, useMsal } from '@azure/msal-react';
 import msalConfig from './msalConfig';
 import { jwtDecode } from 'jwt-decode';
-import Home from './home';
+import AppRoutes from './approutes';
+
+
 
 // Define the types for the decoded JWT token
 interface DecodedToken {
@@ -66,7 +68,6 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>Azure AD Group Membership Check</h1>
       {user ? (
         <div>
           <p>Welcome, {user.name}</p>
@@ -74,11 +75,11 @@ const App: React.FC = () => {
           {!isAuthorized ? (
             <p>You are authorized to access this section.</p>
           ) : (
-            <Home/>
+            <AppRoutes/>  
           )}
         </div>
       ) : (
-        <button onClick={signIn}>Sign In</button>
+         <button onClick={signIn}>Sign In</button>
       )}
     </div>
   );

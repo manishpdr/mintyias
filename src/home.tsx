@@ -4,13 +4,15 @@ import './App.css';
 
 const Home: React.FC = () => {
   return (
-    <div className="home-container">
-      <h1 className="home-title">Welcome to the Minty Home</h1>
-      <p className="home-description">
-       Welcome to Minty IAS Page.
+    <div className="welcome-container">
+    <div className="welcome-content">
+      <h1 className="welcome-title">Welcome to Our Website!</h1>
+      <p className="welcome-description">
+        We're glad to have you here. Let's explore together.
       </p>
-      <button className="home-button">Get Started</button>
+      <button className="explore-button">Start Exploring</button>
     </div>
+  </div>
   );
 };
 

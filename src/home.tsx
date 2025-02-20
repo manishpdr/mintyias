@@ -4,17 +4,13 @@ import './App.css';
 import axiosInstance from './api/axios';
 
 const Home: React.FC = () => {
-  const [posts, setPosts] = useState<any>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+
  const fetchPosts = async () => {
       try {
         const response = await axiosInstance.get('/WeatherForecast'); // Endpoint for posts
-        setPosts(response.data); // Save data to state
-        setLoading(false); // Set loading to false
+       console.log(response.data)
       } catch (error: any) {
-        setError('Error fetching data'); // Handle error
-        setLoading(false);
+       
       }
     };
   return (

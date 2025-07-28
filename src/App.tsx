@@ -13,9 +13,6 @@ interface DecodedToken {
   [key: string]: any;  // Other potential claims
 }
 
- const loginRequest = {
-  scopes: ["openid", "profile", "email"], // Or API scopes
-};
 // Group ID of the target group you want to check against
 const targetGroupId = '2e274a86-35e3-456a-b9c6-fdf493d2c7cf';  // Replace with the actual Azure AD Group ID
 
@@ -43,7 +40,6 @@ const App: React.FC = () => {
       const account = accounts[0];
       setUser(account);
       getUserGroups(account);  // Get user's groups after authentication
-      
     }
   }, [accounts,getUserGroups]);
 
@@ -51,10 +47,8 @@ const App: React.FC = () => {
   const signIn = async () => {
     try {
       const response: AuthenticationResult = await instance.loginPopup();
-     
       setUser(response.account);
       getUserGroups(response.account);  // Fetch user's groups after login
-      
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -64,12 +58,7 @@ const App: React.FC = () => {
   
 
   // Check if the user is a member of the target group
-  const checkGroupAuthorization = async (userGroups: string[]) => {
-    const result = await instance.acquireTokenSilent({
-      ...loginRequest,
-      account: accounts[0],
-    });
-    console.log(result.idToken)
+  const checkGroupAuthorization = (userGroups: string[]) => {
     if (userGroups.includes(targetGroupId)) {
       setIsAuthorized(true);
     } else {

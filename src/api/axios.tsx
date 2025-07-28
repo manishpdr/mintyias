@@ -1,12 +1,39 @@
-// src/axiosInstance.ts
-import axios from 'axios';
 
-// Create an Axios instance with default settings (e.g., base URL)
+
+// src/axiosInstance.js
+import axios from "axios";
+import { PublicClientApplication } from "@azure/msal-browser";
+import msalConfig from "../msalConfig";
+
+// Create MSAL instance
+const msalInstance = new PublicClientApplication(msalConfig);
+ const loginRequest = {
+  scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/access_as_user"], // Or MS Graph scopes
+};
+// Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'https://mintyapi-a6euhmhxe4dme7du.centralindia-01.azurewebsites.net', // Replace with your API base URL
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: "https://mintyapi-a6euhmhxe4dme7du.centralindia-01.azurewebsites.net", // change to your API base URL
 });
 
+// Request Interceptor
+axiosInstance.interceptors.request.use(
+  async (config) => {
+    const accounts = msalInstance.getAllAccounts();
+    if (accounts.length > 0) {
+      try {
+        const response = await msalInstance.acquireTokenSilent({
+          ...loginRequest,
+          account: accounts[0],
+        });
+        config.headers.Authorization = `Bearer ${response.accessToken}`;
+      } catch (error) {
+        console.error("Token acquisition failed", error);
+      }
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 export default axiosInstance;
+

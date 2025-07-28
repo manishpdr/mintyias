@@ -7,6 +7,7 @@ import msalConfig from "../msalConfig";
 
 // Create MSAL instance
 const msalInstance = new PublicClientApplication(msalConfig);
+
  const loginRequest = {
   scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/access_as_user"], // Or MS Graph scopes
 };
@@ -19,6 +20,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     const accounts = msalInstance.getAllAccounts();
+    msalInstance.loginRedirect(loginRequest);
     if (accounts.length > 0) {
       try {
         const response = await msalInstance.acquireTokenSilent({

@@ -43,6 +43,7 @@ const App: React.FC = () => {
       const account = accounts[0];
       setUser(account);
       getUserGroups(account);  // Get user's groups after authentication
+      
     }
   }, [accounts,getUserGroups]);
 
@@ -53,11 +54,7 @@ const App: React.FC = () => {
      
       setUser(response.account);
       getUserGroups(response.account);  // Fetch user's groups after login
-      const result = await instance.acquireTokenSilent({
-        ...loginRequest,
-        account: accounts[0],
-      });
-      console.log(result.idToken)
+      
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -67,7 +64,12 @@ const App: React.FC = () => {
   
 
   // Check if the user is a member of the target group
-  const checkGroupAuthorization = (userGroups: string[]) => {
+  const checkGroupAuthorization = async (userGroups: string[]) => {
+    const result = await instance.acquireTokenSilent({
+      ...loginRequest,
+      account: accounts[0],
+    });
+    console.log(result.idToken)
     if (userGroups.includes(targetGroupId)) {
       setIsAuthorized(true);
     } else {

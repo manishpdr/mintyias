@@ -10,6 +10,7 @@ const msalConfig = {
     cacheLocation: 'sessionStorage',  // 'localStorage' if you need persistent sessions
     storeAuthStateInCookie: false,  // Set to true for IE11 support
   },
+  
 };
 
 export default msalConfig;

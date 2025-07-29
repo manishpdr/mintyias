@@ -23,7 +23,7 @@ axiosInstance.interceptors.request.use(
         const accounts = msalInstance.getAllAccounts()
            msalInstance.acquireTokenSilent({
           account: accounts[0],
-          scopes: ["api://5254975b-cbe7-41a9-9879-e42593962bb5/access-as-user"],
+          scopes: ["api://5254975b-cbe7-41a9-9879-e42593962bb5/User.Access.All"],
         })
         .then((response) => {
            config.headers.Authorization = `Bearer ${response.accessToken}`;

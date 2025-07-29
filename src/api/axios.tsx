@@ -11,7 +11,7 @@ const msalInstance = new PublicClientApplication(msalConfig);
 
 // Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: "https://mintyapi-a6euhmhxe4dme7du.centralindia-01.azurewebsites.net", // change to your API base URL
+  baseURL: "https://mintyapi-a6euhmhxe4dme7du.canadacentral-01.azurewebsites.net", // change to your API base URL
 });
 
 // Request Interceptor

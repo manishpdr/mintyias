@@ -9,7 +9,7 @@ import msalConfig from "../msalConfig";
 const msalInstance = new PublicClientApplication(msalConfig);
 
  const loginRequest = {
-  scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/access_as_user"], // Or MS Graph scopes
+  scopes: ["api://f333d102-c9c9-4434-9f07-635eecff69a6/access_as_user"], // Or MS Graph scopes
 };
 // Create Axios instance
 const axiosInstance = axios.create({

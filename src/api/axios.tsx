@@ -4,13 +4,13 @@
 import axios from "axios";
 import { PublicClientApplication } from "@azure/msal-browser";
 import msalConfig from "../msalConfig";
-import { useMsal } from "@azure/msal-react";
+
 
 // Create MSAL instance
 const msalInstance = new PublicClientApplication(msalConfig);
 msalInstance.initialize();
 
-  const { instance, accounts } = useMsal();
+
 // Create Axios instance
 const axiosInstance = axios.create({
   baseURL: "https://mintyapi-a6euhmhxe4dme7du.canadacentral-01.azurewebsites.net", // change to your API base URL
@@ -20,6 +20,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
       try {
+        const accounts = msalInstance.getAllAccounts()
            msalInstance.acquireTokenSilent({
           account: accounts[0],
           scopes: ["api://5254975b-cbe7-41a9-9879-e42593962bb5/access-as-user"],

@@ -19,21 +19,21 @@ const axiosInstance = axios.create({
 // Request Interceptor
 axiosInstance.interceptors.request.use(
   async (config) => {
-      try {
-        const accounts = msalInstance.getAllAccounts()
-           msalInstance.acquireTokenSilent({
-          account: accounts[0],
-          scopes: ["api://5254975b-cbe7-41a9-9879-e42593962bb5/.default"],
-        })
-        .then((response) => {
-           config.headers.Authorization = `Bearer ${response.accessToken}`;
-          console.log("Bearer Token: ", response.accessToken);
-        });
+      // try {
+      //   const accounts = msalInstance.getAllAccounts()
+      //      msalInstance.acquireTokenSilent({
+      //     account: accounts[0],
+      //     scopes: ["api://5254975b-cbe7-41a9-9879-e42593962bb5/.default"],
+      //   })
+      //   .then((response) => {
+      //      config.headers.Authorization = `Bearer ${response.accessToken}`;
+      //     console.log("Bearer Token: ", response.accessToken);
+      //   });
        
       
-      } catch (error) {
-        console.error("Token acquisition failed", error);
-      }
+      // } catch (error) {
+      //   console.error("Token acquisition failed", error);
+      // }
     
     return config;
   },

@@ -7,6 +7,7 @@ import msalConfig from "../msalConfig";
 
 // Create MSAL instance
 const msalInstance = new PublicClientApplication(msalConfig);
+msalInstance.initialize();
 
 
 // Create Axios instance

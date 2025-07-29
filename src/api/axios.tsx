@@ -18,7 +18,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
       try {
-          const token = await msalInstance.acquireTokenSilent({ scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/access_as_user"] });
+          const token = await msalInstance.acquireTokenSilent({ scopes: ["api://5254975b-cbe7-41a9-9879-e42593962bb5/access-as-user"] });
         config.headers.Authorization = `Bearer ${token.accessToken}`;
       
       } catch (error) {

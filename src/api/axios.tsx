@@ -1,8 +1,7 @@
 
-
-// src/axiosInstance.js
+///
 import axios from "axios";
-import { PublicClientApplication } from "@azure/msal-browser";
+import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
 import msalConfig from "../msalConfig";
 
 
@@ -10,35 +9,27 @@ import msalConfig from "../msalConfig";
 const msalInstance = new PublicClientApplication(msalConfig);
 msalInstance.initialize();
 
-
-// Create Axios instance
-const axiosInstance = axios.create({
-  baseURL: "https://mintyapi-a6euhmhxe4dme7du.canadacentral-01.azurewebsites.net", // change to your API base URL
+const apiClient = axios.create({
+  baseURL: "mintyapi-a6euhmhxe4dme7du.canadacentral-01.azurewebsites.net", // Replace with your backend base URL
 });
 
-// Request Interceptor
-axiosInstance.interceptors.request.use(
-  async (config) => {
-      try {
-        const accounts = msalInstance.getAllAccounts()
-           msalInstance.acquireTokenSilent({
-          account: accounts[0],
-          scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/access_as_user"],
-        })
-        .then((response) => {
-           config.headers.Authorization = `Bearer ${response.accessToken}`;
-          console.log("Bearer Token: ", response.accessToken);
-        });
-       
-      
-      } catch (error) {
-        console.error("Token acquisition failed", error);
-      }
-    
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+// Token injection interceptor
+apiClient.interceptors.request.use(async (config) => {
+  const accounts = msalInstance.getAllAccounts();
+  if (accounts.length === 0) {
+    throw new Error("No active Azure AD user account found.");
+  }
 
-export default axiosInstance;
+  const account: AccountInfo = accounts[0];
+
+  const response = await msalInstance.acquireTokenSilent({
+    scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/access_as_user"],
+    account,
+  });
+
+  config.headers.Authorization = `Bearer ${response.accessToken}`;
+  return config;
+});
+
+export default apiClient;
 

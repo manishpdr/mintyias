@@ -1,12 +1,12 @@
 // Home.tsx
 import './App.css';
-import axiosInstance from './api/axios';
+import apiClient from './api/axios';
 
 const Home: React.FC = () => {
 
  const fetchPosts = async () => {
       try {
-        const response = await axiosInstance.get('/WeatherForecast'); // Endpoint for posts
+        const response = await apiClient.get('/WeatherForecast'); // Endpoint for posts
        console.log(response.data)
       } catch (error: any) {
        

@@ -10,7 +10,7 @@ const msalInstance = new PublicClientApplication(msalConfig);
 msalInstance.initialize();
 
 const apiClient = axios.create({
-  baseURL: "mintyapi-a6euhmhxe4dme7du.canadacentral-01.azurewebsites.net", // Replace with your backend base URL
+  baseURL: "https://mintyapi-a6euhmhxe4dme7du.canadacentral-01.azurewebsites.net", // Replace with your backend base URL
 });
 
 // Token injection interceptor

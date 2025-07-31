@@ -23,7 +23,7 @@ apiClient.interceptors.request.use(async (config) => {
   const account: AccountInfo = accounts[0];
 
   const response = await msalInstance.acquireTokenSilent({
-    scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/AdminUser"],
+    scopes: ["api://1a10c311-55bf-433e-909b-3ed772aa6d0a/access_as_user"],
     account,
   });
 

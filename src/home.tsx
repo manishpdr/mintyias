@@ -6,7 +6,7 @@ const Home: React.FC = () => {
 
  const fetchPosts = async () => {
       try {
-        const response = await apiClient.get('/WeatherForecast'); // Endpoint for posts
+        const response = await apiClient.get('/WeatherForecast/Get'); // Endpoint for posts
        console.log(response.data)
       } catch (error: any) {
        

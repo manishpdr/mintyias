@@ -10,14 +10,14 @@ interface ProfileFormProps {
 const ProfileForm: React.FC<ProfileFormProps> = ({ editingProfile, onDone }) => {
   const dispatch = useAppDispatch();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [Name, setName] = useState('');
+  const [Email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (editingProfile) {
-      setName(editingProfile.name);
-      setEmail(editingProfile.email);
+      setName(editingProfile.Name);
+      setEmail(editingProfile.Name);
     } else {
       setName('');
       setEmail('');
@@ -30,9 +30,9 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ editingProfile, onDone }) => 
 
     try {
       if (editingProfile) {
-        await dispatch(updateProfileAsync({ ...editingProfile, name, email })).unwrap();
+        await dispatch(updateProfileAsync({ ...editingProfile, Name, Email })).unwrap();
       } else {
-        await dispatch(addProfileAsync({ name, email })).unwrap();
+        await dispatch(addProfileAsync({ Name, Email })).unwrap();
       }
 
       setName('');
@@ -51,14 +51,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ editingProfile, onDone }) => 
       <input
         type="text"
         placeholder="Name"
-        value={name}
+        value={Name}
         onChange={e => setName(e.target.value)}
         required
       />
       <input
         type="email"
         placeholder="Email"
-        value={email}
+        value={Email}
         onChange={e => setEmail(e.target.value)}
         required
       />

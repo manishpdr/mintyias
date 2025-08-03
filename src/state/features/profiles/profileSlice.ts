@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiClient from '../../../api/axios';
 
-export interface Profile { id: string; name: string; email: string; }
+export interface Profile { Id: number; Name: string; Email: string; }
 
 interface ProfileState {
   profiles: Profile[];
@@ -20,7 +20,7 @@ export const fetchProfiles = createAsyncThunk('profiles/fetch', async () => {
 
 export const addProfileAsync = createAsyncThunk(
   'profiles/add',
-  async (input: Omit<Profile, 'id'>) => {
+  async (input: Omit<Profile, 'Id'>) => {
     const res = await apiClient.post<Profile>('/profiles', input);
     return res.data;
   }
@@ -29,16 +29,16 @@ export const addProfileAsync = createAsyncThunk(
 export const updateProfileAsync = createAsyncThunk(
   'profiles/update',
   async (profile: Profile) => {
-    const res = await apiClient.put<Profile>(`/profiles/${profile.id}`, profile);
+    const res = await apiClient.put<Profile>(`/profiles/${profile.Id}`, profile);
     return res.data;
   }
 );
 
 export const deleteProfileAsync = createAsyncThunk(
   'profiles/delete',
-  async (id: string) => {
-    await apiClient.delete(`/profiles/${id}`);
-    return id;
+  async (Id: number) => {
+    await apiClient.delete(`/profiles/${Id}`);
+    return Id;
   }
 );
 const slice = createSlice({
@@ -53,11 +53,11 @@ const slice = createSlice({
 
       .addCase(addProfileAsync.fulfilled, (state, action) => { state.profiles.push(action.payload); })
       .addCase(updateProfileAsync.fulfilled, (state, action) => {
-        const idx = state.profiles.findIndex(p => p.id === action.payload.id);
+        const idx = state.profiles.findIndex(p => p.Id === action.payload.Id);
         if (idx !== -1) state.profiles[idx] = action.payload;
       })
       .addCase(deleteProfileAsync.fulfilled, (state, action) => {
-        state.profiles = state.profiles.filter(p => p.id !== action.payload);
+        state.profiles = state.profiles.filter(p => p.Id !== action.payload);
       });
   }
 });

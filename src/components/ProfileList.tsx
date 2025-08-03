@@ -25,10 +25,10 @@ const ProfileList: React.FC = () => {
 
       <ul>
         {profiles.map(p => (
-          <li key={p.id}>
-            {p.name} ({p.email})
+          <li key={p.Id}>
+            {p.Name} ({p.Email})
             <button onClick={() => setEditingProfile(p)}>Edit</button>
-            <button onClick={() => dispatch(deleteProfileAsync(p.id))}>Delete</button>
+            <button onClick={() => dispatch(deleteProfileAsync(p.Id))}>Delete</button>
           </li>
         ))}
       </ul>

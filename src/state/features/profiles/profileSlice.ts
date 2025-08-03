@@ -14,14 +14,14 @@ const initialState: ProfileState = {
 };
 
 export const fetchProfiles = createAsyncThunk('profiles/fetch', async () => {
-  const res = await apiClient.get<Profile[]>('/profiles');
+  const res = await apiClient.get<Profile[]>('/Profiles/GetAllProfiles');
   return res.data;
 });
 
 export const addProfileAsync = createAsyncThunk(
   'profiles/add',
   async (input: Omit<Profile, 'Id'>) => {
-    const res = await apiClient.post<Profile>('/profiles', input);
+    const res = await apiClient.post<Profile>('/Profiles/CreateProfile', input);
     return res.data;
   }
 );
@@ -29,7 +29,7 @@ export const addProfileAsync = createAsyncThunk(
 export const updateProfileAsync = createAsyncThunk(
   'profiles/update',
   async (profile: Profile) => {
-    const res = await apiClient.put<Profile>(`/profiles/${profile.Id}`, profile);
+    const res = await apiClient.put<Profile>(`/Profiles/UpdateProfile/${profile.Id}`, profile);
     return res.data;
   }
 );
@@ -37,7 +37,7 @@ export const updateProfileAsync = createAsyncThunk(
 export const deleteProfileAsync = createAsyncThunk(
   'profiles/delete',
   async (Id: number) => {
-    await apiClient.delete(`/profiles/${Id}`);
+    await apiClient.delete(`/Profiles/DeleteProfile/${Id}`);
     return Id;
   }
 );

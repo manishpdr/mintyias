@@ -2,7 +2,7 @@
 ///
 import axios from "axios";
 import { AccountInfo, PublicClientApplication } from "@azure/msal-browser";
-import msalConfig from "../msalConfig";
+import msalConfig from "../auth/msalConfig";
 
 
 // Create MSAL instance

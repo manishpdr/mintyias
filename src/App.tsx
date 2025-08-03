@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PublicClientApplication, AccountInfo, AuthenticationResult } from '@azure/msal-browser';
 import { MsalProvider, useMsal } from '@azure/msal-react';
-import msalConfig from './msalConfig';
+import msalConfig from './auth/msalConfig'
 import { jwtDecode } from 'jwt-decode';
-import AppRoutes from './approutes';
+import AppRoutes from './routes/approutes';
 
 
 

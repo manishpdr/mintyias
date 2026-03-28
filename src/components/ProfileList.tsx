@@ -6,6 +6,7 @@ import {
   Profile
 } from '../state/features/profiles/profileSlice';
 import ProfileForm from '../components/ProfileForm';
+import ProfileDetails from './ProfileDetails';
 
 const ProfileList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,8 +21,9 @@ const ProfileList: React.FC = () => {
     <div className="profile-list">
       {loading && <p>Loading profiles...</p>}
       {error && <p className="error">{error}</p>}
+<ProfileDetails/>
 
-      <ProfileForm editingProfile={editingProfile} onDone={() => setEditingProfile(null)} />
+      {/* <ProfileForm editingProfile={editingProfile} onDone={() => setEditingProfile(null)} /> */}
 
       <ul>
         {profiles.map(p => (

@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
   const { members, currentFamily } = useAppSelector((state: RootState) => state.family);
   const { events } = useAppSelector((state: RootState) => state.events);
   const { tasks } = useAppSelector((state: RootState) => state.tasks);
-  const { expenses, budgets } = useAppSelector((state: RootState) => state.budget);
+  const { expenses } = useAppSelector((state: RootState) => state.budget);
 
   useEffect(() => {
     dispatch(fetchFamilyMembers() as any);

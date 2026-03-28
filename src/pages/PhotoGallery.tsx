@@ -9,7 +9,6 @@ import {
   uploadPhoto,
   deletePhoto,
   PhotoAlbum,
-  Photo,
   selectAlbum,
 } from '../state/features/photos/photoSlice';
 import AlbumForm from '../components/forms/AlbumForm';

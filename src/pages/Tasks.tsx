@@ -61,10 +61,10 @@ const Tasks: React.FC = () => {
     }
   };
 
-  const filteredTasks =
-    statusFilter === 'All'
-      ? tasks
-      : tasks.filter((t: any) => t.status === statusFilter);
+//   const filteredTasks =
+//     statusFilter === 'All'
+//       ? tasks
+//       : tasks.filter((t: any) => t.status === statusFilter);
 
   const getStatusColor = (status: TaskStatus) => {
     switch (status) {

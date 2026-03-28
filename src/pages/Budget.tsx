@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../state/hooks/hook';
 import type { RootState } from '../state/store/store';
-import type { Expense, Budget as BudgetType } from '../state/features/budget/budgetSlice';
+import type { Expense} from '../state/features/budget/budgetSlice';
 import {
   fetchExpenses,
   fetchBudgets,

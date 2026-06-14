@@ -10,7 +10,7 @@ const msalInstance = new PublicClientApplication(msalConfig);
 msalInstance.initialize();
 
 const apiClient = axios.create({
-  baseURL: "https://mintyapi-a6euhmhxe4dme7du.canadacentral-01.azurewebsites.net/api", // Replace with your backend base URL
+  baseURL: "https://mintyappp.greenglacier-d1b8f4d6.westus2.azurecontainerapps.io/api", // Replace with your backend base URL
 });
 
 // Token injection interceptor
@@ -25,7 +25,7 @@ apiClient.interceptors.request.use(async (config) => {
 
   
   const response = await msalInstance.acquireTokenSilent({
-    scopes: ["api://97d340b4-74c1-4b81-aa2c-9e25b61002df/access_as_user"],
+    scopes: ["api://727ccc82-c83a-4048-9aa7-61c1bd53461a/access_as_user"],
     account,
   });
 

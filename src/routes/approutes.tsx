@@ -6,6 +6,7 @@ import Events from '../pages/Events';
 import Tasks from '../pages/Tasks';
 import Budget from '../pages/Budget';
 import PhotoGallery from '../pages/PhotoGallery';
+import Orders from '../pages/Orders';
 import Navigation from '../components/Navigation';
 
 const AppRoutes: React.FC = () => {
@@ -18,6 +19,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/events" element={<Events />} />
         <Route path="/tasks" element={<Tasks />} />
         <Route path="/budget" element={<Budget />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/gallery" element={<PhotoGallery />} />
       </Routes>
     </Router>

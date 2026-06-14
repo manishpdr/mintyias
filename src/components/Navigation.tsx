@@ -14,6 +14,7 @@ const Navigation: React.FC = () => {
     { path: '/events', label: 'Events', icon: '📅' },
     { path: '/tasks', label: 'Tasks', icon: '✅' },
     { path: '/budget', label: 'Budget', icon: '💰' },
+    { path: '/orders', label: 'Orders', icon: '🛒' },
     { path: '/gallery', label: 'Gallery', icon: '🖼️' },
   ];
 

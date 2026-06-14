@@ -61,7 +61,7 @@ const Orders: React.FC = () => {
         items,
       };
 
-      const response = await apiClient.post('/Orders', payload);
+      const response = await apiClient.post('/Orders/place', payload);
 
       setStatus('Order submitted successfully.');
       setError(null);
